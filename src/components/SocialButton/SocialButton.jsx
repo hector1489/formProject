@@ -1,20 +1,14 @@
 import React from 'react'
+import { Button } from 'react-bootstrap';
 
-const socialButton = () => {
-    const handlerPass = () => {
-        if (pass === confirmPass){
-            return alert('son iguales')
-        }
-        alert('no son iguales')
-    }
-
+const socialButton = ({ icon }) => {
     return (
-        <>
-        <button onClick={handlerPass}>Iniciar sesion</button>
-        </>
+        <Button variant="link" href="#">
+            {icon}
+        </Button>
     );
 }
 
-export default socialButton;
+export default socialButton
 
 
