@@ -1,14 +1,23 @@
 import React, { useState } from 'react'
-//hay que sacar el alert al componente
+//Luego de presionar el botón de iniciar sesión, el componente Alert debe mostrar un
+//mensaje indicando al usuario si el registro fue exitoso o si los campos se encuentran
+//vacíos.
+//○ Utiliza los props para mostrar un mensaje de error o de éxito.
+//○ Opcionalmente, puedes utilizar otro props para cambiar el color de la alerta
+//(success o danger) según corresponda.
+//○ Como recordatorio, debes tener un state en el componente App que
+//almacene el mensaje de
 const Form = () => {
   const [pass, setPass] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
+  const [showAlert, setShowAlert] = useState(false)
+
 
   const handleConfirmPassword = () => {
     if (pass === confirmPass) {
-      alert('exito!');
+      setShowAlert(true);
     } else {
-      alert('error');
+      setShowAlert(false);
     }
   };
 
@@ -31,6 +40,17 @@ const Form = () => {
         <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
       </div>
       <button type="button" className="btn btn-success" onClick={handleConfirmPassword}>Check Password</button>
+      {showAlert && (
+        <div className="alert alert-success" role="alert">
+          ¡Éxito!
+        </div>
+      )}
+      {!showAlert && (
+        <div className="alert alert-danger" role="alert">
+          Error
+        </div>
+      )}
+
     </form>
   );
 }
