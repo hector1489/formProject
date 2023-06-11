@@ -20,3 +20,25 @@
 .card-text {
     margin-top: 20px;
 }
+
+.all {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    /*border: solid 5px black;*/
+    justify-content: center;
+    align-items: center;
+}
+
+i {
+    border: solid 1px rgb(182, 170, 170);
+    border-radius: 15px;
+    width: 50px
+}
+
+.icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
