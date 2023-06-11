@@ -7,3 +7,11 @@
 //○ Como recordatorio, debes tener un state en el componente App que
 //almacene el mensaje de error o de éxito, y pasar mediante props al
 //componente Alert y Login.
+
+    const Alert = ({ texto, color }) => {
+    return (
+      <div className={`alert alert-${color}`} role="alert">{texto}</div>
+    );
+  };
+
+  export default Alert

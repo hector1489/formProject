@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-    <div class="d-flex justify-content-center align-self-center">
+    <div className="d-flex justify-content-center align-self-center">
      <Register/>
      </div>
     </>

@@ -7,11 +7,15 @@ import React, { useState } from 'react'
 //(success o danger) según corresponda.
 //○ Como recordatorio, debes tener un state en el componente App que
 //almacene el mensaje de
+import Alert from '../Alert/Alert'
+
 const Form = () => {
   const [pass, setPass] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
   const [showAlert, setShowAlert] = useState(false)
+  const [email, setEmail] = useState('');
 
+  const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
 
   const handleConfirmPassword = () => {
     if (pass === confirmPass) {
@@ -19,13 +23,29 @@ const Form = () => {
     } else {
       setShowAlert(false);
     }
+    handleConfirmEmail();
   };
 
+  const handleConfirmEmail = () => {
+    if (emailRegex.test(email) === false) {
+      alert('Ingresa un correo válido');
+    }
+  }
+
+  const handlerSend = (e) => {
+    e.preventDefault()
+    console.log('me enviaste')
+  }
+
   return (
-    <form>
+    <form onSubmit={handlerSend}>
+      <div className="form-group">
+        <label htmlFor="exampleInputName">Name</label>
+        <input type="name" className="form-control" id="exampleInputName" placeholder="Enter your name" />
+      </div>
       <div className="form-group">
         <label htmlFor="exampleInputEmail1">Email address</label>
-        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+        <input type="email" className="form-control" id="exampleInputEmail" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
       </div>
       <div className="form-group">
         <label htmlFor="exampleInputPassword1">Password</label>
@@ -35,22 +55,13 @@ const Form = () => {
         <label htmlFor="exampleInputPassword2">Confirm Password</label>
         <input type="password" className="form-control" id="exampleInputPassword2" placeholder="ConfirmPass" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} />
       </div>
-      <div className="form-check">
-        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-        <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
-      </div>
-      <button type="button" className="btn btn-success" onClick={handleConfirmPassword}>Check Password</button>
+      <button type="submit" className="btn btn-success" onClick={handleConfirmPassword}>Check Password</button>
       {showAlert && (
-        <div className="alert alert-success" role="alert">
-          ¡Éxito!
-        </div>
+        <Alert texto="¡Éxito!" color="success" />
       )}
       {!showAlert && (
-        <div className="alert alert-danger" role="alert">
-          Error
-        </div>
+        <Alert texto="Error" color="danger" />
       )}
-
     </form>
   );
 }
